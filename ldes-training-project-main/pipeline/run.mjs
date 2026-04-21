@@ -1,0 +1,8 @@
+import path from "path";
+const origJoin = path.join;
+const origRelative = path.relative;
+path.join = (...args) => origJoin(...args).replaceAll("\\", "/");
+path.relative = (...args) => origRelative(...args).replaceAll("\\", "/");
+path.sep = "/";
+
+await import("./node_modules/@rdfc/js-runner/bin/js-runner.js");
